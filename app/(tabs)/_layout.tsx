@@ -17,5 +17,3 @@ const TabsLayout = () => {
 };
 
 export default TabsLayout;
-
-// 1:05:31
