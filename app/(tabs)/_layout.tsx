@@ -4,7 +4,7 @@ import React from "react";
 const TabsLayout = () => {
   const isAuthenticated = true;
 
-  if (!isAuthenticated) return <Redirect href={"/sign-in"} />;
+  if (!isAuthenticated) return <Redirect href={"/sign-up"} />;
 
   return (
     <Tabs screenOptions={{ headerShown: false }}>
