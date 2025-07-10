@@ -33,35 +33,20 @@ export const createUser = async ({
   name,
 }: CreateUserParams) => {
   try {
-    const isValidEmail = /\S+@\S+\.\S+/.test(email);
-    if (!isValidEmail) {
-      throw new Error("Please enter a valid email address.");
-    }
-
-    // console.log("Creating user with:", { email, password, name });
-
     const newAccount = await account.create(ID.unique(), email, password, name);
-
-    if (!newAccount) throw new Error("Account creation failed");
+    if (!newAccount) throw Error;
 
     await signIn({ email, password });
 
-    const avatarUrl = avatars.getInitialsURL(name).toString();
+    const avatarUrl = avatars.getInitialsURL(name);
 
-    // Creating New User
     return await databases.createDocument(
       appwriteConfig.databaseId!,
       appwriteConfig.userCollectionId!,
       ID.unique(),
-      {
-        accountId: newAccount.$id,
-        email,
-        name,
-        avatar: avatarUrl,
-      }
+      { email, name, accountId: newAccount.$id, avatar: avatarUrl }
     );
   } catch (e) {
-    console.log(e);
     throw new Error(e as string);
   }
 };
@@ -72,15 +57,20 @@ export const signIn = async ({ email, password }: SignInParams) => {
 
     return session;
   } catch (e) {
-    console.log(e);
     throw new Error(e as string);
   }
 };
 
 export const getCurrentUser = async () => {
   try {
+    const session = await account.getSession("current");
+
+    if (!session) {
+      throw new Error("No active session");
+    }
+
     const currentAccount = await account.get();
-    if (!currentAccount) throw Error("No User is logged in");
+    if (!currentAccount) throw Error;
 
     const currentUser = await databases.listDocuments(
       appwriteConfig.databaseId!,
