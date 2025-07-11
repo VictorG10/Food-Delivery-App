@@ -6,6 +6,7 @@ import {
   Databases,
   ID,
   Query,
+  Storage,
 } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -13,7 +14,14 @@ export const appwriteConfig = {
   platform: "com.vg.fooddeliveryapp",
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
+  bucketId: process.env.EXPO_PUBLIC_APPWRITE_BUCKET_ID,
   userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_COL_ID,
+  categoriesCollectionId: process.env.EXPO_PUBLIC_APPWRITE_CATEGORIES_COL_ID,
+  menuCollectionId: process.env.EXPO_PUBLIC_APPWRITE_MENU_COL_ID,
+  customizationsCollectionId:
+    process.env.EXPO_PUBLIC_APPWRITE_CUSTOMIZATIONS_COL_ID,
+  menuCustomizationsCollectionId:
+    process.env.EXPO_PUBLIC_APPWRITE_MENUCUSTOMIZATIONS_COL_ID,
 };
 
 export const client = new Client();
@@ -26,6 +34,7 @@ client
 export const account = new Account(client);
 export const databases = new Databases(client);
 export const avatars = new Avatars(client);
+export const storage = new Storage(client);
 
 export const createUser = async ({
   email,
