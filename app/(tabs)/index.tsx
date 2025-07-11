@@ -17,6 +17,8 @@ export default function HomeScreen() {
 
   console.log("User:", JSON.stringify(user, null, 2));
 
+  // 2:18:33
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <FlatList
