@@ -10,7 +10,8 @@ import {
 } from "react-native-appwrite";
 
 export const appwriteConfig = {
-  endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
+  // endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT,
+  endpoint: "https://fra.cloud.appwrite.io/v1",
   platform: "com.vg.fooddeliveryapp",
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID,
   databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID,
