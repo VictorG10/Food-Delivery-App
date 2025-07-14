@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { StatusBar } from "react-native";
 import "./global.css";
 
+SplashScreen.preventAutoHideAsync().catch(() => {}); // prevent errors in older Android/Expo versions
+
 Sentry.init({
   dsn: "https://4faf106031863d6e1da703641525dbc4@o4509642964926464.ingest.us.sentry.io/4509643221630976",
 
@@ -38,7 +40,16 @@ export default Sentry.wrap(function RootLayout() {
 
   useEffect(() => {
     if (error) throw error;
-    if (fontsLoaded) SplashScreen.hideAsync();
+
+    // if (fontsLoaded)  SplashScreen.hideAsync();
+
+    const hideSplash = async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    };
+
+    hideSplash();
   }, [fontsLoaded, error]);
 
   useEffect(() => {

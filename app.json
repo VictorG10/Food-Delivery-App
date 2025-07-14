@@ -28,15 +28,6 @@
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ],
-      [
         "@sentry/react-native/expo",
         {
           "url": "https://sentry.io/",
@@ -45,6 +36,12 @@
         }
       ]
     ],
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "imageWidth": 200,
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "experiments": {
       "typedRoutes": true
     }
